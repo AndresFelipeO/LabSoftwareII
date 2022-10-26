@@ -22,7 +22,7 @@ public class TruckParkingCost implements IParkingCost {
             }
             valor += (horas * 15000) / 24;
         }
-        return valor;
+        return redondear(valor);
     }
 
     @Override
@@ -43,5 +43,15 @@ public class TruckParkingCost implements IParkingCost {
         minutes = (output.getMinute() + input.getMinute()) / 60;
         return (output.getHour() - input.getHour()) + minutes + days + months + years;
     }
-
+    
+   @Override
+   public long redondear(long n) {
+      if (n % 100 == 0) {
+         return n;
+      } else {
+         long calcular;
+         calcular = n - (n % 100) + 100;
+         return calcular;
+      }
+   }
 }
